@@ -1,9 +1,22 @@
 package main
 
+import (
+	"fmt"
+)
+
 func run() {
-	content := ConvertToHtml(LoadMd(ScanDir("content")))
+	fmt.Println("Scanning for markdown files")
+	files := ScanDir("content")
+	fmt.Println("Loading markdown files")
+	mds := LoadMd(files)
+	fmt.Println("Converting markdown to html")
+	content := ConvertToHtml(mds)
+	fmt.Println("Loading template")
 	template := LoadTemplate()
-	SaveHtml(InsertToTemplate(template, content), ScanDir("content"))
+	fmt.Println("Inserting into template")
+	final := InsertToTemplate(template, content)
+	fmt.Println("Saving html files")
+	SaveHtml(final, ScanDir("content"))
 }
 
 func main() {

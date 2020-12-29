@@ -3,7 +3,6 @@ package main
 import (
 	"strings"
 	"github.com/gomarkdown/markdown"
-	"fmt"
 )
 
 func FindContentPlace(template string) int {
@@ -31,7 +30,6 @@ func InsertToTemplate(template string, content []string) []string {
 	templateLines := strings.Split(template, "\n")
 
 	for i := range content {
-		fmt.Println("content")
 		contentLines = strings.Split(content[i], "\n")
 		tmp = append(templateLines[0:cLine], contentLines...)
 		tmp = append(tmp, templateLines[cLine+1:len(templateLines)]...)
