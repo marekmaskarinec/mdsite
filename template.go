@@ -30,8 +30,10 @@ func InsertToTemplate(template string, content []string) []string {
 	templateLines := strings.Split(template, "\n")
 
 	for i := range content {
+		templateLines = strings.Split(template, "\n")
 		contentLines = strings.Split(content[i], "\n")
 		tmp = append(templateLines[0:cLine], contentLines...)
+		templateLines = strings.Split(template, "\n")
 		tmp = append(tmp, templateLines[cLine+1:len(templateLines)]...)
 		toReturn = append(toReturn, "")
 		for j := range tmp {
