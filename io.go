@@ -6,10 +6,10 @@ import (
 )
 
 /*Scans directory for markdown files*/
-func ScanDir(dir string) []string {
+func ScanDir() []string {
 	var toReturn []string
 
-	files, err := ioutil.ReadDir(dir)
+	files, err := ioutil.ReadDir(path)
 	if err != nil {
 		panic("looking for md files: " + err.Error())
 	}
@@ -29,7 +29,7 @@ func LoadMd(files []string) [][]byte {
 	var err error
 
 	for i := range files {
-		dat, err = ioutil.ReadFile("content/"+files[i])
+		dat, err = ioutil.ReadFile(path+files[i])
 		if err != nil {
 			panic("loading md files: " + err.Error())
 		} else {
@@ -40,7 +40,7 @@ func LoadMd(files []string) [][]byte {
 }
 
 func LoadTemplate() string {
-	dat, err := ioutil.ReadFile("content/template.html")
+	dat, err := ioutil.ReadFile(path + "template.html")
 	if err != nil {
 		panic("loading template: " + err.Error())
 	}
@@ -55,7 +55,7 @@ func SaveHtml(toSave, names []string) {
 		filename = strings.Split(names[i], ".")[0] + ".html"
 		err = ioutil.WriteFile(filename, []byte(toSave[i]), 0644)
 		if err != nil {
-			panic("savin " + filename + ": " + err.Error())
+			panic("saving " + filename + ": " + err.Error())
 		}
 	}
 }
